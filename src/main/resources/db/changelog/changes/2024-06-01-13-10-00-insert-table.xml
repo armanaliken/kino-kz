@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <!-- Вставка данных в таблицу halls -->
+    <changeSet id="1" author="arman">
+        <insert tableName="halls">
+            <column name="place" value="30"/>
+        </insert>
+        <insert tableName="halls">
+            <column name="place" value="30"/>
+        </insert>
+        <insert tableName="halls">
+            <column name="place" value="30"/>
+        </insert>
+    </changeSet>
+
+    <!-- Вставка данных в таблицу permission -->
+    <changeSet id="2" author="arman">
+        <insert tableName="permission">
+            <column name="role" value="ROLE_USER"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="role" value="ROLE_ADMIN"/>
+        </insert>
+    </changeSet>
+
+    <!-- Вставка данных в таблицу t_users -->
+    <changeSet id="3" author="arman">
+        <insert tableName="t_users">
+            <column name="balance" value="2500"/>
+            <column name="email" value="Ilias@gmail.com"/>
+            <column name="full_name" value="Ilias Menlikul"/>
+            <column name="img_link" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKlfv90dhoJUV9kmuHg5XkXo9-RLUGdY-goA&amp;s"/>
+            <column name="password" value="$2a$10$hA5YQpMfyCUuvOADFeyqUOR9NamKIPt5ysYRvpKl0hTY9jL91Zrfa"/>
+        </insert>
+        <insert tableName="t_users">
+            <column name="balance" value="0"/>
+            <column name="email" value="arsen@gmail.com"/>
+            <column name="full_name" value="Arsen Bayan"/>
+            <column name="img_link" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKlfv90dhoJUV9kmuHg5XkXo9-RLUGdY-goA&amp;s"/>
+            <column name="password" value="$2a$10$hA5YQpMfyCUuvOADFeyqUOR9NamKIPt5ysYRvpKl0hTY9jL91Zrfa"/>
+        </insert>
+        <insert tableName="t_users">
+            <column name="balance" value="350"/>
+            <column name="email" value="armanaliken05@gmail.com"/>
+            <column name="full_name" value="Arman Bekaidar"/>
+            <column name="img_link" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKlfv90dhoJUV9kmuHg5XkXo9-RLUGdY-goA&amp;s"/>
+            <column name="password" value="$2a$10$hA5YQpMfyCUuvOADFeyqUOR9NamKIPt5ysYRvpKl0hTY9jL91Zrfa"/>
+        </insert>
+    </changeSet>
+
+    <!-- Вставка данных в таблицу t_users_permissions -->
+    <changeSet id="4" author="arman">
+        <insert tableName="t_users_permissions">
+            <column name="user_id" value="1"/>
+            <column name="permissions_id" value="1"/>
+        </insert>
+        <insert tableName="t_users_permissions">
+            <column name="user_id" value="2"/>
+            <column name="permissions_id" value="1"/>
+        </insert>
+        <insert tableName="t_users_permissions">
+            <column name="user_id" value="3"/>
+            <column name="permissions_id" value="2"/>
+        </insert>
+        <insert tableName="t_users_permissions">
+            <column name="user_id" value="3"/>
+            <column name="permissions_id" value="1"/>
+        </insert>
+    </changeSet>
+
+    <!-- Вставка данных в таблицу t_events -->
+    <changeSet id="5" author="arman">
+        <insert tableName="t_events">
+            <column name="event_name" value="Interstellar"/>
+            <column name="author" value="Cinema"/>
+            <column name="event_date" value="2024-06-02 22:00:00"/>
+            <column name="picture_link" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZly0qUqJweMB6Gxejwz_jFd4wdDPRhcZuhw&amp;s"/>
+            <column name="price" value="2500"/>
+            <column name="status" value="true"/>
+            <column name="hall_id" value="1"/>
+        </insert>
+        <insert tableName="t_events">
+            <column name="event_name" value="Champions league"/>
+            <column name="author" value="Sport"/>
+            <column name="event_date" value="2024-06-02 00:00:00"/>
+            <column name="picture_link" value="https://zakazbiletov.kz/media/events/mg/1693881976xdj7x.webp"/>
+            <column name="price" value="4000"/>
+            <column name="status" value="true"/>
+            <column name="hall_id" value="2"/>
+        </insert>
+        <insert tableName="t_events">
+            <column name="event_name" value="King Lear"/>
+            <column name="author" value="Theatre"/>
+            <column name="event_date" value="2024-06-01 15:20:00"/>
+            <column name="picture_link" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_l_XhvG8w9kmFue9OtU4z5Oik8XvcJt_tjn64X2j1p3sNw6nz3Sac3j6L31wCLT3l9ns&amp;usqp=CAU"/>
+            <column name="price" value="3000"/>
+            <column name="status" value="true"/>
+            <column name="hall_id" value="3"/>
+        </insert>
+    </changeSet>
+
+    <!-- Вставка данных в таблицу tickets -->
+    <changeSet id="6" author="arman">
+        <insert tableName="tickets">
+            <column name="event_id" value="1"/>
+            <column name="user_id" value="1"/>
+            <column name="prime_code_ticket" value="1010"/>
+            <column name="place" value="1"/>
+        </insert>
+        <insert tableName="tickets">
+            <column name="event_id" value="2"/>
+            <column name="user_id" value="2"/>
+            <column name="prime_code_ticket" value="2020"/>
+            <column name="place" value="2"/>
+        </insert>
+        <insert tableName="tickets">
+            <column name="event_id" value="3"/>
+            <column name="user_id" value="3"/>
+            <column name="prime_code_ticket" value="3030"/>
+            <column name="place" value="3"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

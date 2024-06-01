@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="1" author="arman">
+        <createTable tableName="halls">
+            <column name="id" type="BIGSERIAL" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="place" type="INT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="arman">
+        <createTable tableName="t_users">
+            <column name="id" type="BIGSERIAL" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="password" type="VARCHAR(255)"/>
+            <column name="full_name" type="VARCHAR(255)"/>
+            <column name="img_link" type="VARCHAR(255)"/>
+            <column name="balance" type="INT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="3" author="arman">
+        <createTable tableName="permission">
+            <column name="id" type="BIGSERIAL" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="role" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="4" author="arman">
+        <createTable tableName="t_events">
+            <column name="id" type="BIGSERIAL" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="event_name" type="VARCHAR(255)"/>
+            <column name="event_date" type="VARCHAR(255)"/>
+            <column name="author" type="VARCHAR(255)"/>
+            <column name="picture_link" type="VARCHAR(255)"/>
+            <column name="hall_id" type="BIGINT">
+                <constraints foreignKeyName="fk_t_events_hall_id" references="halls(id)"/>
+            </column>
+            <column name="price" type="INT"/>
+            <column name="status" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="5" author="arman">
+        <createTable tableName="comment">
+            <column name="id" type="BIGSERIAL" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="comment" type="VARCHAR(255)"/>
+            <column name="event_id" type="BIGINT">
+                <constraints foreignKeyName="fk_comment_event_id" references="t_events(id)"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints foreignKeyName="fk_comment_user_id" references="t_users(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="6" author="arman">
+        <createTable tableName="tickets">
+            <column name="id" type="BIGSERIAL" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="event_id" type="BIGINT">
+                <constraints foreignKeyName="fk_tickets_event_id" references="t_events(id)"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints foreignKeyName="fk_tickets_user_id" references="t_users(id)"/>
+            </column>
+            <column name="prime_code_ticket" type="BIGINT"/>
+            <column name="place" type="INT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="7" author="arman">
+        <createTable tableName="t_users_permissions">
+            <column name="user_id" type="BIGINT">
+                <constraints foreignKeyName="fk_t_users_permissions_user_id" references="t_users(id)"/>
+            </column>
+            <column name="permissions_id" type="BIGINT">
+                <constraints foreignKeyName="fk_t_users_permissions_permissions_id" references="permission(id)"/>
+            </column>
+        </createTable>
+        <addPrimaryKey tableName="t_users_permissions" columnNames="user_id, permissions_id" constraintName="pk_t_users_permissions"/>
+    </changeSet>
+
+</databaseChangeLog>
